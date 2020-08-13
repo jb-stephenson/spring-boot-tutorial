@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html>
+	<th:block xmlns:th="http://thymeleaf.org">
+		<p>Thank you for registering to the Spring Boot Tutorial site</p>
+		<p>Please click <a th:href="@{${url} + '/registrationconfirmed?t=' + ${token}}">here</a> to verify your email address</p>
+	</th:block>
+</html>
