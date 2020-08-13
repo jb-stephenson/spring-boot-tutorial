@@ -213,7 +213,7 @@ public class ProfileController
 	
 	@RequestMapping(value="/save-interest", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> saveInterest(@RequestParam(name="interest") String interestName) {
+	public ResponseEntity<?> saveInterest(@RequestParam(name="name") String interestName) {
 		SiteUser user = getUser();
 		Profile profile = profileService.getUserProfile(user);
 		
@@ -229,7 +229,7 @@ public class ProfileController
 	
 	@RequestMapping(value="/delete-interest", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> deleteInterest(@RequestParam(name="interest") String interestName) {
+	public ResponseEntity<?> deleteInterest(@RequestParam(name="name") String interestName) {
 		SiteUser user = getUser();
 		Profile profile = profileService.getUserProfile(user);
 		
@@ -237,6 +237,6 @@ public class ProfileController
 		
 		profileService.save(profile);
 		
-		return new ResponseEntity(null, HttpStatus.OK);
+		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 }

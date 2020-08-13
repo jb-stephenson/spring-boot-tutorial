@@ -18,7 +18,7 @@ public class InterestService {
 		return interestDao.count();
 	}
 	
-	public Interest getName(String interestName)
+	public Interest get(String interestName)
 	{
 		return interestDao.findOneByName(interestName);
 	}
