@@ -16,13 +16,16 @@ C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbo
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\StatusUpdate.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\VerificationToken.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\controllers\PageController.java
+C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\service\InterestService.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\exceptions\InvalidFileException.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\exceptions\ImageTooSmallException.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\App.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\UserServiceDao.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\StatusUpdateDao.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\ProfileDao.java
+C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\InterestDao.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\service\FileService.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\VerificationDao.java
+C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\model\Interest.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\service\StatusUpdateService.java
 C:\Users\js649\eclipse-workspace\spring-boot-tutorial\src\main\java\com\springbootdemo\controllers\GlobalExceptionHandler.java
