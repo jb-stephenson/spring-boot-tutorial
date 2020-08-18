@@ -21,7 +21,7 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="interest" items="${profile.interests}">
-							<li>${interest}</li>
+							<li>${interest.name}</li>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
