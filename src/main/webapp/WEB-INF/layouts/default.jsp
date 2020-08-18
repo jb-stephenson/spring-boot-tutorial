@@ -11,6 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 <!-- JQuery -->
 <script 
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -25,8 +28,14 @@
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${contextRoot}/css/main.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- This is only for javascript tagging on the profile -->
+<link href="${contextRoot}/css/jquery.tagit.css" rel="stylesheet">
+<script src="${contextRoot}/js/jquery-ui.min.js"></script>
+<script src="${contextRoot}/js/tag-it.min.js"></script>
 
 </head>
 <body>

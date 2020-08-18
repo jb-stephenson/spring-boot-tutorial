@@ -111,6 +111,7 @@ public class ProfileController
 	{
 		SiteUser user = getUser();
 		ModelAndView modelAndView = showProfile(user);
+		modelAndView.getModel().put("ownProfile", true);
 		return modelAndView;
 	}
 	
@@ -119,6 +120,7 @@ public class ProfileController
 	{
 		SiteUser user = userService.get(id);
 		ModelAndView modelAndView = showProfile(user);
+		modelAndView.getModel().put("ownProfile", false);
 		return modelAndView;
 	}
 	
@@ -224,7 +226,7 @@ public class ProfileController
 		profile.addInterest(interest);
 		profileService.save(profile);
 		
-		return new ResponseEntity(null, HttpStatus.OK);
+		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/delete-interest", method=RequestMethod.POST)

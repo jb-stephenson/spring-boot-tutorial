@@ -6,17 +6,37 @@
 
 <c:url var="profilePhoto" value="/profilephoto/${userId}" />
 <c:url var="editProfileAbout" value="/editprofileabout" />
+<c:url var="saveInterest" value="/save-interest" />
+<c:url var="deleteInterest" value="/delete-interest" />
 
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<div id="profile-photo-text">Photo Uploaded</div>
+		
+		<div id="interest-div">
+			<ul id="interestList">
+				<c:choose>
+					<c:when test="${empty profile.interests}">
+						<li>Add Your Interests Here</li>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="interest" items="${profile.interests}">
+							<li>${interest}</li>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+		</div>
+		
 		<div class="profile-about">
 			<div class="profile-image">
 				<div>
 					<img src="${profilePhoto}" id="profile-photo-img">
 				</div>
 				<div class="text-center">
-					<a href="#" id="uploadLink">Upload Photo</a>
+					<c:if test="${ownProfile == true}">
+						<a href="#" id="uploadLink">Upload Photo</a>
+					</c:if>
 				</div>
 			</div>
 			
@@ -32,7 +52,9 @@
 			</div>
 			
 			<div class="profile-about-edit">
-				<a href="${editProfileAbout}">Edit</a>
+				<c:if test="${ownProfile == true}">
+					<a href="${editProfileAbout}">Edit</a>
+				</c:if>
 			</div>
 		</div>
 		<c:url value="/upload-profile-photo" var="uploadPhotoLink"></c:url>
@@ -80,9 +102,59 @@ function uploadPhoto(event) {
 	event.preventDefault();
 }
 
+function saveInterest(text) {
+	editInterest(text, "${saveInterest}");
+}
+
+function deleteInterest(text) {
+	editInterest(text, "${deleteInterest}");
+}
+
+function editInterest(text, actionUrl) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+		jqXHR.setRequestHeader(header, token);
+	});
+	
+	$.ajax({
+		"url": actionUrl,
+		data: {
+			"name": text
+		},
+		type: "POST",
+		
+		success: function() {
+			alert("ok");
+		},
+		error: function() {
+			alert("error");
+		}
+	});
+}
+
 $(document).ready(function() {
 	
-	setUploadStatusText("Hello There");
+	setUploadStatusText("");
+	
+	$("#interestList").tagit({
+
+		afterTagRemoved: function(event, ui) {
+			deleteInterest(ui.tagLabel);
+		},
+	
+		afterTagAdded: function(event, ui) {
+			if(ui.duringInitialization != true) {
+				saveInterest(ui.tagLabel);
+			}
+		},
+		
+		caseSensitive: false,
+		allowSpaces: true,
+		tagLimit: 10,
+		readOnly: '${ownProfile}' == 'false'
+	});
 	
 	$("#uploadLink").click(function(event) {
 		event.preventDefault();
