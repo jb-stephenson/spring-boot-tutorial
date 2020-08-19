@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -46,16 +47,28 @@ public class SiteUser {
 	@Column(name="role", length=20)
 	private String role;
 	
+	@NotNull
+	@Column(name="firstname", length=20)
+	@Size(min=2, max=20, message="{register.firstname.size}")
+	private String firstname;
+
+	@NotNull
+	@Column(name="surname", length=25)
+	@Size(min=2, max=25, message="{register.surname.size}")
+	private String surname;
+	
 	public SiteUser() {
 		
 	}
 	
 	/* Creating constructor to make testing users easier */
-	public SiteUser(String email, String password) {
+	public SiteUser(String email, String password, String firstname, String surname) {
 		this.email = email;
-		this.plainPassword = password;
+		this.setPlainPassword(password);
 		this.repeatPassword = password;
 		this.enabled = true;
+		this.firstname = firstname;
+		this.surname = surname;
 	}
 	
 	public Long getId() {
@@ -114,4 +127,28 @@ public class SiteUser {
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	@Override
+	public String toString() {
+		return "SiteUser [id=" + id + ", email=" + email + ", plainPassword=" + plainPassword + ", enabled=" + enabled
+				+ ", repeatPassword=" + repeatPassword + ", password=" + password + ", role=" + role + ", firstname="
+				+ firstname + ", surname=" + surname + "]";
+	}
+	
 }
