@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        				 "/registrationconfirmed",
 	        				 "/invaliduser",
 	        				 "/expiredtoken",
+        				     "/profilephoto/*",
 	        				 "/search").permitAll()
 	        	.antMatchers("/css/*",
 	        				 "/js/*",
@@ -47,7 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         					 "/profile/*",
         				     "/editprofileabout",
         				     "/upload-profile-photo",
-        				     "/profilephoto/*",
         				     "/save-interest",
         				     "/delete-interest")               //access to authenticated users
         			.authenticated()

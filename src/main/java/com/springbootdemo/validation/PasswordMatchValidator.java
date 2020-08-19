@@ -3,7 +3,7 @@ package com.springbootdemo.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.springbootdemo.model.SiteUser;
+import com.springbootdemo.model.entity.SiteUser;
 
 public class PasswordMatchValidator implements ConstraintValidator<PasswordMatch, SiteUser>{
 

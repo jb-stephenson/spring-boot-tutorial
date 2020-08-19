@@ -1,19 +1,20 @@
 package com.springbootdemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
-import com.springbootdemo.model.StatusUpdate;
-import com.springbootdemo.model.StatusUpdateDao;
+import com.springbootdemo.model.entity.StatusUpdate;
+import com.springbootdemo.model.repository.StatusUpdateDao;
 
 @Component
 public class StatusUpdateService 
 {
-	private final static int PAGESIZE = 5;
+	@Value("${status.pagesize}")
+	private int pageSize;
 	
 	@Autowired
 	private StatusUpdateDao statusUpdateDao;
@@ -30,7 +31,7 @@ public class StatusUpdateService
 
 	public Page<StatusUpdate> getPage(int pageNumber) 
 	{
-		PageRequest request = new PageRequest(pageNumber-1, PAGESIZE, Sort.Direction.DESC, "dateAdded");
+		PageRequest request = new PageRequest(pageNumber-1, pageSize, Sort.Direction.DESC, "dateAdded");
 		
 		return statusUpdateDao.findAll(request);
 	}

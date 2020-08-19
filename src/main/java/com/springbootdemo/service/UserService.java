@@ -13,11 +13,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.springbootdemo.model.SiteUser;
-import com.springbootdemo.model.TokenType;
-import com.springbootdemo.model.UserServiceDao;
-import com.springbootdemo.model.VerificationDao;
-import com.springbootdemo.model.VerificationToken;
+import com.springbootdemo.model.entity.SiteUser;
+import com.springbootdemo.model.entity.TokenType;
+import com.springbootdemo.model.entity.VerificationToken;
+import com.springbootdemo.model.repository.UserServiceDao;
+import com.springbootdemo.model.repository.VerificationDao;
 
 @Service
 public class UserService implements UserDetailsService{

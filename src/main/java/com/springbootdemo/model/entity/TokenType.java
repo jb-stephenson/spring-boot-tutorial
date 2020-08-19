@@ -1,4 +1,4 @@
-package com.springbootdemo.model;
+package com.springbootdemo.model.entity;
 
 public enum TokenType {
 	REGISTRATION,

@@ -14,8 +14,8 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Calendar;
 
 import com.springbootdemo.App;
-import com.springbootdemo.model.StatusUpdate;
-import com.springbootdemo.model.StatusUpdateDao;
+import com.springbootdemo.model.entity.StatusUpdate;
+import com.springbootdemo.model.repository.StatusUpdateDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(App.class)

@@ -23,9 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.springbootdemo.App;
-import com.springbootdemo.model.Interest;
-import com.springbootdemo.model.Profile;
-import com.springbootdemo.model.SiteUser;
+import com.springbootdemo.model.entity.Interest;
+import com.springbootdemo.model.entity.Profile;
+import com.springbootdemo.model.entity.SiteUser;
 import com.springbootdemo.service.InterestService;
 import com.springbootdemo.service.ProfileService;
 import com.springbootdemo.service.UserService;

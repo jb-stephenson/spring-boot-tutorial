@@ -30,10 +30,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.springbootdemo.exceptions.ImageTooSmallException;
 import com.springbootdemo.exceptions.InvalidFileException;
-import com.springbootdemo.model.FileInfo;
-import com.springbootdemo.model.Interest;
-import com.springbootdemo.model.Profile;
-import com.springbootdemo.model.SiteUser;
+import com.springbootdemo.model.dto.FileInfo;
+import com.springbootdemo.model.entity.Interest;
+import com.springbootdemo.model.entity.Profile;
+import com.springbootdemo.model.entity.SiteUser;
 import com.springbootdemo.service.FileService;
 import com.springbootdemo.service.InterestService;
 import com.springbootdemo.service.ProfileService;
@@ -200,7 +200,7 @@ public class ProfileController
 		SiteUser user = userService.get(id);
 		Profile profile = profileService.getUserProfile(user);
 		
-		Path photoPath = Paths.get(photoUploadDirectory, "default", "tyranitar.jpg");
+		Path photoPath = Paths.get(photoUploadDirectory, "default", "default.png");
 		if((photoPath != null) && (profile.getPhoto(photoUploadDirectory) != null))
 		{
 			photoPath = profile.getPhoto(photoUploadDirectory);
