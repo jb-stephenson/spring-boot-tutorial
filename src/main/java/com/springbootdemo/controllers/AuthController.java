@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springbootdemo.model.SiteUser;
-import com.springbootdemo.model.VerificationToken;
+import com.springbootdemo.model.entity.SiteUser;
+import com.springbootdemo.model.entity.VerificationToken;
 import com.springbootdemo.service.EmailService;
 import com.springbootdemo.service.UserService;
 

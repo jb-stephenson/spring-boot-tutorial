@@ -7,8 +7,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
-import com.springbootdemo.model.StatusUpdate;
-import com.springbootdemo.model.StatusUpdateDao;
+import com.springbootdemo.model.entity.StatusUpdate;
+import com.springbootdemo.model.repository.StatusUpdateDao;
 
 @Component
 public class StatusUpdateService 

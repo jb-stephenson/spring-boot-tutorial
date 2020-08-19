@@ -1,4 +1,4 @@
-package com.springbootdemo.model;
+package com.springbootdemo.model.entity;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.owasp.html.PolicyFactory;
+
+import com.springbootdemo.model.dto.FileInfo;
 
 @Entity
 @Table(name="profile")

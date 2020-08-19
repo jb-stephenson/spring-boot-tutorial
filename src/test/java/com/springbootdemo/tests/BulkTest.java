@@ -22,9 +22,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.springbootdemo.App;
-import com.springbootdemo.model.Interest;
-import com.springbootdemo.model.Profile;
-import com.springbootdemo.model.SiteUser;
+import com.springbootdemo.model.entity.Interest;
+import com.springbootdemo.model.entity.Profile;
+import com.springbootdemo.model.entity.SiteUser;
 import com.springbootdemo.service.InterestService;
 import com.springbootdemo.service.ProfileService;
 import com.springbootdemo.service.UserService;

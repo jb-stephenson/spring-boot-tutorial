@@ -166,3 +166,12 @@ body > div.ui-helper-hidden-accessible {
 #search-button:hover {
 	color: gray;
 }
+
+/* List of results */
+.results-photo {
+	display: inline-block;	
+}
+
+.results-detail {
+	display: inline-block;
+}
