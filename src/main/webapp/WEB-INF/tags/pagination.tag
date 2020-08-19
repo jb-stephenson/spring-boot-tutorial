@@ -1,4 +1,4 @@
-<%@ tag language="java" pageEncoding="ISO-8859-1"%>
+<%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ attribute name="page" required="true" type="org.springframework.data.domain.Page" %>
@@ -13,16 +13,11 @@
 <c:set var="endPage" value="${(block + 1) * size}" />
 <c:set var="endPage" value="${endPage > page.totalPages ? page.totalPages: endPage}" />
 
-<!-- <p><c:out value="Block: ${block}" />
-<p><c:out value="Size: ${size}" />
-<p><c:out value="Start Page: ${startPage}" />
-<p><c:out value="End Page: ${endPage}" />  -->
-
 <c:if test="${page.totalPages != 1}">
 	<div class="pagination">
 		
 		<c:if test="${block != 0}">
-			<a href="${url}?p=${(block - 1) * size + 1}&b=${block - 1}">&lt;&lt;</a>
+			<a href="${url}?b=${block - 1}&p=${(block - 1) * size + 1}">&lt;&lt;</a>
 		</c:if>
 		
 		<c:forEach var="pageNumber" begin="${startPage}" end="${endPage}">
@@ -41,8 +36,8 @@
 			</c:if>
 		</c:forEach>
 		
-		<c:if test="${endPages != pages.totalPages}">
-			<a href="${url}?p=${(block + 1) * size + 1}&b=${block + 1}">&gt;&gt;</a>
+		<c:if test="${endPage != pages.totalPages}">
+			<a href="?b=${block + 1}&p=${(block + 1) * size + 1}">&gt;&gt;</a>
 		</c:if>
 	</div>
 </c:if>
