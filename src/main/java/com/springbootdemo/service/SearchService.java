@@ -20,6 +20,6 @@ public class SearchService {
 		
 		//Interests is the field in the Profile Class
 		//Name is the field in the Interest Class
-		return profileDao.findByInterestsName(text).stream().map(SearchResult::new).collect(Collectors.toList());
+		return profileDao.findByInterestsNameContainingIgnoreCase(text).stream().map(SearchResult::new).collect(Collectors.toList());
 	}
 }

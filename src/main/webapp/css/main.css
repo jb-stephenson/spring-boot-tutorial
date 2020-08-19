@@ -64,6 +64,14 @@ textarea {
 	margin-top: 10px;
 }
 
+/* Registration Page */
+
+.register-prompt {
+	font-size: 1.3em;
+	text-align: center;
+	padding: 10px;
+}
+
 .login-form {
 	width: 100%;
 }
@@ -168,10 +176,27 @@ body > div.ui-helper-hidden-accessible {
 }
 
 /* List of results */
+
 .results-photo {
 	display: inline-block;	
 }
 
 .results-detail {
 	display: inline-block;
+	margin-left: 10px;
+}
+
+.results-name {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.results-interests {
+	font-size: 1.3em;
+}
+
+.person-row {
+	border: 1px solid blue;
+	border-radius: 5px;
+	margin-bottom: 10px;
 }
