@@ -37,9 +37,9 @@ public class ProfileTest {
 	private InterestService interestService;
 	
 	private SiteUser[] users = {
-			new SiteUser("sean@gmail.com", "seancleric"),
-			new SiteUser("gab@gmail.com", "gabriel"),
-			new SiteUser("taylor@gmail.com", "taylor")
+			new SiteUser("sean@gmail.com", "seancleric", "Sean", "Cleric"),
+			new SiteUser("gab@gmail.com", "gabriel", "Gabe", "Wrestler"),
+			new SiteUser("taylor@gmail.com", "taylor", "Taylor", "Bard")
 	};
 	
 	private String[][] interests = {

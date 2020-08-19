@@ -154,4 +154,10 @@ public class Profile
 	public void removeInterest(String interestName) {
 		this.interests.remove(new Interest(interestName));
 	}
+
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", user=" + user + ", about=" + about + ", photoDirectory=" + photoDirectory
+				+ ", photoName=" + photoName + ", photoExt=" + photoExt + ", interests=" + interests + "]";
+	}
 }
