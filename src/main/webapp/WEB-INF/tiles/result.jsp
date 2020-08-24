@@ -1,15 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib tagdir="/WEB-INF/tags" prefix="jbs" %>
 
 <div class="row">
 	<div class="col-md-12 results-noresults">
-		<c:if test="${empty results}">
+		<c:if test="${empty page.content}">
 			No results
 		</c:if>
 	</div>
 </div>
 
-<c:forEach var="result" items="${results}">
+<c:set var="searchUrl" value="/search?s=${s}"/>
+
+<div class="row">
+	<div class="col-md-12">
+		<jbs:pagination page="${page}" url="${searchUrl}" size="10"/>
+	</div>
+</div>
+
+<c:forEach var="result" items="${page.content}">
 	<c:url var="profilePhoto" value="/profilephoto/${result.userId}" />
 	<c:url var="profileLink" value="/profile/${result.userId}" />
 	

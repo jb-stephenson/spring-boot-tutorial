@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		
-		<jbs:pagination page="${page}" url="${url}" size="3"/>
+		<jbs:pagination page="${page}" url="${url}" size="10"/>
 		
 		<c:forEach var="statusUpdate" items="${page.content}">
 			<c:url var="editLink" value="/editstatus?id=${statusUpdate.id}" />
