@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.springbootdemo.validation.PasswordMatch;
@@ -69,6 +69,17 @@ public class SiteUser {
 		this.enabled = true;
 		this.firstname = firstname;
 		this.surname = surname;
+	}
+	
+	/* Creating constructor to make testing users easier */
+	public SiteUser(String email, String password, String firstname, String surname, String role) {
+		this.email = email;
+		this.setPlainPassword(password);
+		this.repeatPassword = password;
+		this.enabled = true;
+		this.firstname = firstname;
+		this.surname = surname;
+		this.role = role;
 	}
 	
 	public Long getId() {

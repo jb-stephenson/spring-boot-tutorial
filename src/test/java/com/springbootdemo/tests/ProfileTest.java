@@ -4,16 +4,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.HashSet;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.springbootdemo.App;
 import com.springbootdemo.model.entity.Interest;
 import com.springbootdemo.model.entity.Profile;
 import com.springbootdemo.model.entity.SiteUser;
@@ -22,8 +24,8 @@ import com.springbootdemo.service.ProfileService;
 import com.springbootdemo.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(App.class)
-@WebAppConfiguration
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations="classpath:test.properties")
 @Transactional
 public class ProfileTest {
 
@@ -55,6 +57,9 @@ public class ProfileTest {
 		{
 			SiteUser user = users[i];
 			String[] interestArray = interests[i];
+			
+			String name = new Random().ints(10,0,10).mapToObj(Integer::toString).collect(Collectors.joining(""));
+			user.setEmail(name+"@example.com");
 			
 			userService.register(user);
 			

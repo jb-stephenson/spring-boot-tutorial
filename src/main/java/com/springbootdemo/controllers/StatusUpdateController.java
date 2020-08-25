@@ -1,5 +1,7 @@
 package com.springbootdemo.controllers;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,9 @@ public class StatusUpdateController {
 	@RequestMapping(value="/editstatus", method=RequestMethod.GET)
 	ModelAndView editStatus(ModelAndView modelAndView, @RequestParam(name="id") Long id)
 	{
-		StatusUpdate statusUpdate = statusUpdateService.get(id);
+		Optional<StatusUpdate> statusUpdateOptional = statusUpdateService.get(id);
+		
+		StatusUpdate statusUpdate = statusUpdateOptional.get();
 		
 		modelAndView.getModel().put("statusUpdate", statusUpdate);
 		

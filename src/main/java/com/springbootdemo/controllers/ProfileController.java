@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -118,7 +119,8 @@ public class ProfileController
 	@RequestMapping("/profile/{id}")
 	ModelAndView showProfile(@PathVariable("id") Long id)
 	{
-		SiteUser user = userService.get(id);
+		Optional<SiteUser> userOptional = userService.get(id);
+		SiteUser user = userOptional.get();
 		ModelAndView modelAndView = showProfile(user);
 		modelAndView.getModel().put("ownProfile", false);
 		return modelAndView;
@@ -197,7 +199,8 @@ public class ProfileController
 	@ResponseBody
 	ResponseEntity<InputStreamResource> servePhoto(@PathVariable("id") Long id) throws IOException
 	{
-		SiteUser user = userService.get(id);
+		Optional<SiteUser> userOptional = userService.get(id);
+		SiteUser user = userOptional.get();
 		Profile profile = profileService.getUserProfile(user);
 		
 		Path photoPath = Paths.get(photoUploadDirectory, "default", "default.png");

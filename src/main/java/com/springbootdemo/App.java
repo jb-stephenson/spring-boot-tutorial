@@ -5,11 +5,11 @@ import org.owasp.html.PolicyFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.ErrorPage;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.ErrorPage;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 @EnableAsync
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled=true, prePostEnabled=true)
-public class App extends SpringBootServletInitializer {
+public class App extends org.springframework.boot.web.servlet.support.SpringBootServletInitializer {
 
 	public static void main(String[] args) 
 	{	
@@ -65,17 +65,15 @@ public class App extends SpringBootServletInitializer {
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Bean
-	EmbeddedServletContainerCustomizer errorHandler()
-	{
-		return new EmbeddedServletContainerCustomizer()
-		{
-			@Override
-			public void customize(ConfigurableEmbeddedServletContainer container) 
-			{
-				container.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403"));
-			}
-		};
+	@Configuration
+	public class ServerConfig {
+		
+		@Bean
+		public ConfigurableServletWebServerFactory webServerFactory() {
+			TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+			factory.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403"));
+			return factory;
+		}
 	}
 	
 	@Bean
