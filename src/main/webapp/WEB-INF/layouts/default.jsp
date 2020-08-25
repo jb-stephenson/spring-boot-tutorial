@@ -37,6 +37,13 @@
 <script src="${contextRoot}/js/jquery-ui.min.js"></script>
 <script src="${contextRoot}/js/tag-it.min.js"></script>
 
+<!-- Websocket Imports -->
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+<tiles:insertAttribute name="chatnotifications"></tiles:insertAttribute>
+<tiles:insertAttribute name="chatviewscript" ignore="true"></tiles:insertAttribute>
+
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg">

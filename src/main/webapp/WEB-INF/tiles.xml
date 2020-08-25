@@ -5,6 +5,7 @@
 <tiles-definitions>
 	<definition name="app.default" template="/WEB-INF/layouts/default.jsp">
 		<put-attribute name="title" value="Spring Boot Demo" />
+		<put-attribute name="chatnotifications" value="/WEB-INF/tiles/chatnotifications.jsp" />
 	</definition>
 
 	<definition name="app.homepage" extends="app.default">
@@ -58,4 +59,10 @@
 	<definition name="app.search" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/tiles/result.jsp" />
 	</definition>
+	
+	<definition name="chat.chatview" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/tiles/chatview.jsp" />
+		<put-attribute name="chatviewscript" value="/WEB-INF/tiles/chatviewscript.jsp" />
+	</definition>
+
 </tiles-definitions>
