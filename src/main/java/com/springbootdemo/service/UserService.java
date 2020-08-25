@@ -1,6 +1,7 @@
 package com.springbootdemo.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.springbootdemo.model.entity.SiteUser;
@@ -27,9 +27,6 @@ public class UserService implements UserDetailsService{
 	
 	@Autowired
 	private VerificationDao verificationDao;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
 	public void register(SiteUser user)
 	{
@@ -77,7 +74,7 @@ public class UserService implements UserDetailsService{
 		return userDao.findByEmail(email);
 	}
 
-	public SiteUser get(Long id) {
-		return userDao.findOne(id);
+	public Optional<SiteUser> get(Long id) {
+		return userDao.findById(id);
 	}
 }

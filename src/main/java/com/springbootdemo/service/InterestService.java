@@ -2,7 +2,6 @@ package com.springbootdemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.springbootdemo.model.entity.Interest;
 import com.springbootdemo.model.repository.InterestDao;

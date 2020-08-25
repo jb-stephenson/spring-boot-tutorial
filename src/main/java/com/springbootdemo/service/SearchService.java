@@ -2,7 +2,6 @@ package com.springbootdemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -22,20 +21,18 @@ public class SearchService {
 	
 	public Page<SearchResult> search(String text, int pageNumber) {
 		
-		PageRequest request = new PageRequest(pageNumber-1, pageSize);
+		PageRequest request = PageRequest.of(pageNumber-1, pageSize);
 		
-		//Interests is the field in the Profile Class
-		//Name is the field in the Interest Class
-		Page<Profile> results = profileDao.findByInterestsNameContainingIgnoreCase(text, request);
+		Page<Profile> results = null;
 		
-		Converter<Profile, SearchResult> converter = new Converter<Profile, SearchResult>() {
-
-			public SearchResult convert(Profile profile) {
-				return new SearchResult(profile);
-			}
-			
-		};
+		if(text.trim().length() == 0) {
+			results = profileDao.findAll(request);
+		} else {
+			//Interests is the field in the Profile Class
+			//Name is the field in the Interest Class
+			results = profileDao.findByInterestsNameContainingIgnoreCase(text, request);
 		
-		return results.map(converter);
+		}
+		return results.map(p -> new SearchResult(p));
 	}
 }

@@ -11,18 +11,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.springbootdemo.App;
 import com.springbootdemo.model.entity.Interest;
 import com.springbootdemo.model.entity.Profile;
 import com.springbootdemo.model.entity.SiteUser;
@@ -31,9 +30,9 @@ import com.springbootdemo.service.ProfileService;
 import com.springbootdemo.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(App.class)
-@WebAppConfiguration
-@Transactional
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations="classpath:test.properties")
+//@Transactional
 public class ProfileControllerRestTest {
 
 	@Autowired
@@ -56,7 +55,7 @@ public class ProfileControllerRestTest {
 	}
 	
 	@Test
-	@WithMockUser(username="john@gmail.com")
+	@WithMockUser(username="test@gmail.com")
 	public void testSaveAndDeleteInterest() throws Exception {
 		String interestText = "some_interest_here";
 		

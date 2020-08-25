@@ -44,15 +44,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        				 "/editstatus",
 	        				 "/deletestatus")
 	        		.hasRole("ADMIN")
-        		.antMatchers("/profile",
+        		.antMatchers("/profile",                    //access to authenticated users
         					 "/profile/*",
         				     "/editprofileabout",
         				     "/upload-profile-photo",
         				     "/save-interest",
-        				     "/delete-interest")               //access to authenticated users
+        				     "/delete-interest")
         			.authenticated()
-    			.anyRequest()
-    			.denyAll()
         	.anyRequest()
 	        	.authenticated()
 	        	.and()
