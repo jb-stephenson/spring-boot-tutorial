@@ -29,6 +29,7 @@
 <link href="${contextRoot}/css/main.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+<script src="${contextRoot}/js/connectionmanager.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -77,7 +78,7 @@
 				</sec:authorize>
 				
 				<sec:authorize access="isAuthenticated()">
-					<li><a href="${contextRoot}/profile">Profile</a></li>
+					<li><a href="${contextRoot}/profile"><sec:authentication property="principal.firstname"/>'s Profile</a></li>"
 					<li><a href="javascript:$('#logoutForm').submit();">Logout</a></li>
 				</sec:authorize>
 					
@@ -106,5 +107,11 @@
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="${contextRoot}/js/bootstrap.min.js"> </script>
+	
+	<sec:authorize access="isAuthenticated()">
+		<script>
+			connectionManager.connect();
+		</script>
+	</sec:authorize>
 </body>
 </html>

@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:out value="${thisUserID}" />
-<c:out value="${chatWithUserID}" />
-<c:out value="${chatwithUserName}" />
-
 <div class="row">
 
 	<div class="col-md-12">
@@ -13,7 +9,7 @@
 		<div class="panel panel-default">
 		
 			<div class="pane panel-heading">
-				<div class="panel-title">Chatting with Someone</div>
+				<div class="panel-title">Chatting with <c:out value="${chatWithUserName}"/></div>
 			</div>
 			<div class="panel-body">
 				<div id="chat-message-view">

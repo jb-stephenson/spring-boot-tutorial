@@ -7,31 +7,17 @@
 	
 <sec:authorize access="isAuthenticated()">
 
-<c:url var="webSocketEndpoint" value="/chat" scope="request" />
+<c:url var="webSocketEndPoint" value="/chat" scope="request" />
 <c:url var="inboundDestination" value="/user/queue/${thisUserID}" />
 
 	<script>
 	
-		var csrfTokenName = $("meta[name='_csrf_header']").attr("content");
-		var csrfTokenValue = $("meta[name='_csrf']").attr("content");
-		
-		console.log("CSRF name", csrfTokenName);
-		console.log("CSRF value", csrfTokenValue);
-		
-		var headers = [];
-		headers[csrfTokenName] = csrfTokenValue;
-		
-		var wsocket = new SockJS("${webSocketEndpoint}");
-		var client = Stomp.over(wsocket);
-		
-		client.connect(headers, function() {
-			console.log("Established web socket connection");
+		var connectionManager = new ConnectionManager("${webSocketEndPoint}");
+	
+		connectionManager.addSubscription("${inboundDestination}", function(messageJson) {
+			var message = JSON.parse(messageJson.body);
 			
-			client.subscribe("${inboundDestination}", function(messageJson) {
-				var message = JSON.parse(messageJson.body);
-				
-				alert(message.text);
-			});
+			alert(message);
 		});
 		
 	

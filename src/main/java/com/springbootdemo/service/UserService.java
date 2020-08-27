@@ -7,12 +7,12 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.springbootdemo.model.dto.SpringUser;
 import com.springbootdemo.model.entity.SiteUser;
 import com.springbootdemo.model.entity.TokenType;
 import com.springbootdemo.model.entity.VerificationToken;
@@ -50,8 +50,10 @@ public class UserService implements UserDetailsService{
 		
 		List<GrantedAuthority> auth = AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRole());
 		String password = user.getPassword();
+		String firstname = user.getFirstname();
 		Boolean enabled = user.getEnabled();
-		return new User(email, password, enabled, true, true, true, auth);
+		
+		return new SpringUser(firstname, email, password, enabled, true, true, true, auth);
 	}
 	
 	public String createEmailVerificationToken(SiteUser user)
