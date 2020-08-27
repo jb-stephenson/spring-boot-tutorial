@@ -3,8 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:url var="outboundDestination" value="/app/message/send/${chatWithUserID}" />
+<c:url var="inboundDestination" value="/user/queue/${thisUserID}" />
 
 <script>
+
+	function newMessageCallBack(message) {
+		console.log("Message received: ", JSON.parse(message.body).text);
+	}
+	
+	connectionManager.addSubscription("${inboundDestination}", newMessageCallBack);
 	
 	function sendMessage() {
 		
@@ -13,7 +20,7 @@
 			'text': text	
 		};
 		
-		client.send("${outboundDestination}", headers, JSON.stringify(message));
+		connectionManager.send("${outboundDestination}", message);
 		
 		$("#chat-message-text").val("");
 		$("#chat-message-text").focus();
