@@ -1,4 +1,4 @@
-.navbar {
+	.navbar {
 	background-color: blue;
 	border-color: blue;
 }
@@ -227,4 +227,56 @@ body > div.ui-helper-hidden-accessible {
 .results-contact {
 	height: 10%;
 	width: 10%;
+}
+
+.chat-message {
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	min-width:50px; 
+	display: table;
+}
+
+.chat-message-reply {
+	background-color: white;
+	border: 1px solid blue;
+	color: blue;
+	font-weight: bold;
+	float: right;
+	margin-left: 51%;
+}
+
+.chat-message-sent {
+	background-color: blue;
+	color: white;
+	font-weight: bold;
+	float: left;
+	margin-right: 51%;
+}
+
+.chat-message-record {
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column-reverse;
+	padding-bottom: 10px;
+}
+
+#chat-older-messages {
+	margin-bottom: 5px;
+}
+
+.message-received {
+	width: 80%;
+	background-color: blue;
+	color: white;
+	font-weight: bold;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 50px;
+	border: 1px solid gray;
+}
+
+.message-received > a {
+	color: white;
 }
