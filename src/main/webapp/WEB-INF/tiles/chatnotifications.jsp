@@ -8,16 +8,42 @@
 <sec:authorize access="isAuthenticated()">
 
 <c:url var="webSocketEndPoint" value="/chat" scope="request" />
-<c:url var="inboundDestination" value="/user/queue/${thisUserID}" />
+<c:url var="notificationQueue" value="/user/queue/newmessages" />
+<c:url var="notificationUrl" value="/" />
 
 	<script>
 	
+		function alertUser(from, text) {
+			if(!("Notification" in window)) {
+				
+				//Notifications not supported
+				return;
+			} else if(Notification.permission === "denied") {
+				
+				//User doesn't want notifications
+				return;
+			} else if(Notification.permission !== "granted") {
+				
+				Notification.requestPermission();
+			}
+			
+			if(Notification.permission === "granted") {
+				
+				var notification = new Notification(from, { body : text });
+				
+				notification.onclick = function() {
+					window.location.href = "${notificationUrl}";
+				};
+			}
+		}
+	
 		var connectionManager = new ConnectionManager("${webSocketEndPoint}");
 	
-		connectionManager.addSubscription("${inboundDestination}", function(messageJson) {
+		connectionManager.addSubscription("${notificationQueue}", function(messageJson) {
+			console.log(messageJson);
 			var message = JSON.parse(messageJson.body);
 			
-			alert(message);
+			alertUser(message.from, message.text);
 		});
 		
 	

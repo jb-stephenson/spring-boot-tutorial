@@ -1,7 +1,7 @@
 /*****************************************************************************
- *
- *   Details with retrieving messages, creating message notifications, etc.
- *
+ *                                                                           *
+ *   Details with retrieving messages, creating message notifications, etc.  *
+ *                                                                           *
  *****************************************************************************/
 
 function ConnectionManager(webSocketEndPoint) {
@@ -10,8 +10,8 @@ function ConnectionManager(webSocketEndPoint) {
 	var csrfTokenName = $("meta[name='_csrf_header']").attr("content");
 	var csrfTokenValue = $("meta[name='_csrf']").attr("content");
 	
-	console.log("CSRF name", csrfTokenName);
-	console.log("CSRF value", csrfTokenValue);
+	/*console.log("CSRF name", csrfTokenName);
+	console.log("CSRF value", csrfTokenValue);*/
 	
 	this.webSocketEndPoint = webSocketEndPoint;
 	this.client = null;
@@ -22,10 +22,14 @@ function ConnectionManager(webSocketEndPoint) {
 	var client = Stomp.over(wsocket);
 	
 	this.subscriptions = [];
+	
+	$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+		jqXHR.setRequestHeader(csrfTokenName, csrfTokenValue);
+	});
 }
 
 ConnectionManager.prototype.connect = function() {
-	console.log("connect method called");
+	/*console.log("connect method called");*/
 	
 	var wsocket = new SockJS(this.webSocketEndPoint);
 	this.client = Stomp.over(wsocket);
@@ -35,8 +39,31 @@ ConnectionManager.prototype.connect = function() {
 	this.client.connect(this.headers, function() { _self.connectSuccess() });
 }
 
+ConnectionManager.prototype.fetchMessages = function(conversationAjaxUrl, refreshMessages, page) {
+	
+	var request = JSON.stringify({
+		'page': page
+	});
+	
+	var jqHXR = $.ajax({
+    	url: conversationAjaxUrl,
+    	dataType: 'json',
+		data: request,
+		contentType: 'application/json',
+    	method: 'POST'
+    });
+    
+    jqHXR.fail(function(textStatus) {
+    	console.log("Could not receive messages: ", textStatus);
+    });
+    
+    jqHXR.done(function(messages){
+		refreshMessages(messages);
+    });
+}
+
 ConnectionManager.prototype.connectSuccess = function() {
-	console.log("Established web socket connection");
+	/*console.log("Established web socket connection");*/
 	
 	for(var i=0; i < this.subscriptions.length; i++) {
 		var subscription = this.subscriptions[i];
@@ -45,7 +72,7 @@ ConnectionManager.prototype.connectSuccess = function() {
 		var messageCallBack = subscription.newMessageCallBack;
 		
 		this.client.subscribe(inboundDestination, messageCallBack);
-		console.log(inboundDestination, ":", messageCallBack);
+		/*console.log(inboundDestination, ":", messageCallBack);*/
 	}
 }
 
@@ -60,5 +87,5 @@ ConnectionManager.prototype.addSubscription = function(inboundDestination, newMe
 		"inboundDestination": inboundDestination,
 		"newMessageCallBack": newMessageCallBack
 	});
-	console.log("addSubscription called");
+	/*console.log("addSubscription called");*/
 }

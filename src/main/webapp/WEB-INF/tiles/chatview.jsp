@@ -4,7 +4,7 @@
 
 <div class="row">
 
-	<div class="col-md-12">
+	<div class="col-md-8 col-md-offset-2">
 	
 		<div class="panel panel-default">
 		
@@ -14,10 +14,10 @@
 			<div class="panel-body">
 				<div id="chat-message-view">
 					<div id="chat-message-previous">
-						<a href="#">View Older Messages</a>
+						<a id="chat-older-messages" href="#">View Older Messages</a>
 					</div>
 					
-					<div id="chat-message-record">
+					<div class="chat-message-record" id="chat-message-record">
 					</div>
 					
 					<div class="input-group input-group-lg">
